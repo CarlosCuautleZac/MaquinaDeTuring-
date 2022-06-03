@@ -86,10 +86,7 @@ namespace MaquinaDeTuring.ViewModels
             }
             else
             {
-                if (Cadena.Contains(' '))
-                    Estado = "ErrorEspaciosEnBlanco";
-                else
-                    Estado = "ErrorVariasPalabras";
+                Estado = "Error";
                 Actualizar("");
             }
         }
@@ -121,10 +118,7 @@ namespace MaquinaDeTuring.ViewModels
             }
             else
             {
-                if (Cadena.Contains(' '))
-                    Estado = "ErrorEspaciosEnBlanco";
-                else
-                    Estado = "ErrorVariasPalabras";
+                Estado = "Error";
                 Actualizar("");
             }
         }
