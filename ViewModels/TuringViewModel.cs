@@ -52,7 +52,7 @@ namespace MaquinaDeTuring.ViewModels
         public bool ValidarPalabra()
         {
             Cadena = Cadena.ToUpper();
-            if (Regex.IsMatch(Cadena, "[A-Z]"))
+            if (Regex.IsMatch(Cadena, @"^[\p{L}]+$"))
                 return true;
             else
                 return false;
@@ -60,8 +60,10 @@ namespace MaquinaDeTuring.ViewModels
 
 
         //Metodo para codificar
-        public void Codificar()
+        public async void Codificar()
         {
+            CadenaNueva = "";
+            Actualizar("");
             if (ValidarPalabra())
             {
                 CadenaNueva = "";
@@ -74,26 +76,31 @@ namespace MaquinaDeTuring.ViewModels
                     if (letrasiguiente == '[')
                         letrasiguiente = 'A';
 
-                    CadenaNueva += letrasiguiente; ;
+                    CadenaNueva += letrasiguiente;
                     Actualizar("");
-                    Task.Delay(1000);
+                    await Task.Delay(2000);
+                    
+                    
                 }
 
                 Estado = "Listo";
+                Actualizar("");
             }
             else
             {
                 Estado = "Error";
+                Actualizar("");
             }
         }
 
 
         //Metodo para decodificar
-        public void Decodificar()
+        public async void Decodificar()
         {
+            CadenaNueva = "";
+            Actualizar("");
             if (ValidarPalabra())
-            {
-                CadenaNueva = "";
+            {              
                 Estado = "Codificando";
 
                 for (int i = 0; i < Cadena.Length; i++)
@@ -103,16 +110,18 @@ namespace MaquinaDeTuring.ViewModels
                     if (letraanterior == '@')
                         letraanterior = 'Z';
 
-                    CadenaNueva += letraanterior; ;
+                    CadenaNueva += letraanterior;
                     Actualizar("");
-                    Task.Delay(1000);
+                    await Task.Delay(1000);
                 }
 
                 Estado = "Listo";
+                Actualizar("");
             }
             else
             {
                 Estado = "Error";
+                Actualizar("");
             }
         }
 
