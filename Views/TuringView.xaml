@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:MaquinaDeTuring.ViewModels"
         xmlns:local="clr-namespace:MaquinaDeTuring.Views"
+        xmlns:helpers="clr-namespace:MaquinaDeTuring.Helpers"
         mc:Ignorable="d"
         Title="Maquina de Turing" Height="450" Width="900" Background="#fafafa" ResizeMode="NoResize">
 
@@ -13,6 +14,8 @@
     </Window.DataContext> 
     <Grid>
         <Grid.Resources>
+            <helpers:DeEstadoAColorConverter x:Key="Color"></helpers:DeEstadoAColorConverter>
+            <helpers:DeEstadoATextoConverter x:Key="Texto"></helpers:DeEstadoATextoConverter>
             <Style TargetType="Button">
                 <Setter Property="Width" Value="160"></Setter>
                 <Setter Property="FontSize" Value="20"></Setter>
@@ -61,7 +64,7 @@
                 <Setter Property="Margin" Value="20,0"></Setter>
                 <Setter Property="Height" Value="60"></Setter>
             </Style>
-            <Style TargetType="TextBlock">
+            <Style TargetType="TextBlock" x:Key="PalabraProceso">
                 <Setter Property="FontSize" Value="120"></Setter>
                 <Setter Property="VerticalAlignment" Value="Center"></Setter>
                 <Setter Property="HorizontalAlignment" Value="Center"></Setter>
@@ -72,14 +75,23 @@
         </Grid.Resources>
         <DockPanel>
             
-            <Grid DockPanel.Dock="Bottom" Background="red" Height="50">
-                <Canvas Width="50"
-                        Height="50">
-                    <Ellipse></Ellipse>
+            <StackPanel DockPanel.Dock="Bottom"
+                  Height="70">
+                <TextBlock HorizontalAlignment="Center"
+                           FontWeight="SemiBold"
+                           FontSize="20"
+                           Margin="0,0,0,5"
+                           Foreground="#014a73"
+                           Text="{Binding Estado, Converter={StaticResource Texto}}"></TextBlock>
+                <Canvas Width="30"
+                        Height="30">
+                    <Ellipse Width="30"
+                             Height="30"
+                             Fill="{Binding Estado, Converter={StaticResource Color}}"></Ellipse>
                 </Canvas>
                 
                 
-            </Grid>
+            </StackPanel>
             
             
             <WrapPanel DockPanel.Dock="Bottom"
@@ -90,7 +102,7 @@
                 <Button>Codificar</Button>
             </WrapPanel>
             <Grid>
-                <TextBlock>Palabra</TextBlock>
+                <TextBlock Style="{StaticResource PalabraProceso}">Palabra</TextBlock>
             </Grid>
         </DockPanel>
     </Grid>
