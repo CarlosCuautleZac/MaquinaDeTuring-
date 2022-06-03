@@ -13,7 +13,7 @@ namespace MaquinaDeTuring.Helpers
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             string Color = "Transparent";
-            if (value.ToString() == "Error")
+            if (value.ToString().Substring(0,5) == "Error")
             {
                 Color = "#ae0000";
                 return Color; 
