@@ -9,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace MaquinaDeTuring.ViewModels
 {
-    class TuringViewModel : INotifyPropertyChanged
+    public class TuringViewModel : INotifyPropertyChanged
     {
+
+        //Esta es la cadena que el usuario va a introducir
         private string cadena;
 
         public string Cadena
@@ -19,6 +21,8 @@ namespace MaquinaDeTuring.ViewModels
             set { cadena = value; Actualizar("Cadena"); }
         }
 
+
+        //Esta es la cadena que saldra codificada o decodificada
         private string cadenanueva;
 
         public string CadenaNueva
@@ -27,7 +31,16 @@ namespace MaquinaDeTuring.ViewModels
             set { cadenanueva = value; }
         }
 
+        //Este es el estado de la maquina de turing
         public string Estado { get; set; } = "Listo";
+
+
+        //constructor
+
+        public TuringViewModel()
+        {
+            Decodificar();
+        }
 
         public bool ValidarPalabra()
         {
@@ -39,6 +52,7 @@ namespace MaquinaDeTuring.ViewModels
         }
 
 
+        //Metodo para codificar
         public string Codificar()
         {
             if (ValidarPalabra())
@@ -48,12 +62,13 @@ namespace MaquinaDeTuring.ViewModels
 
                 for (int i = 0; i < Cadena.Length; i++)
                 {
-                    var letrasiguiente = Cadena[i] + 1;
+                    char letrasiguiente = (char)(Cadena[i] + 1);
 
                     if (letrasiguiente == '[')
                         letrasiguiente = 'A';
 
-                    CadenaNueva += Cadena[i];
+                    CadenaNueva += letrasiguiente; ;
+                    Actualizar("");
                     Task.Delay(1000);
                 }
 
@@ -68,9 +83,40 @@ namespace MaquinaDeTuring.ViewModels
         }
 
 
+        //Metodo para decodificar
+        public string Decodificar()
+        {
+            if (ValidarPalabra())
+            {
+                CadenaNueva = "";
+                Estado = "Codificando";
+
+                for (int i = 0; i < Cadena.Length; i++)
+                {
+                    char letraanterior = (char)(Cadena[i] - 1);
+
+                    if (letraanterior == '@')
+                        letraanterior = 'Z';
+
+                    CadenaNueva += letraanterior; ;
+                    Actualizar("");
+                    Task.Delay(1000);
+                }
+
+                Estado = "Listo";
+                return CadenaNueva;
+            }
+            else
+            {
+                Estado = "Error";
+                return CadenaNueva = "Error";
+            }
+        }
+
+        //Metodo para actualizar las propiedades
         public void Actualizar(string name)
         {
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
         public event PropertyChangedEventHandler PropertyChanged;
     }
