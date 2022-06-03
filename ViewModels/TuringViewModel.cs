@@ -46,7 +46,7 @@ namespace MaquinaDeTuring.ViewModels
         public TuringViewModel()
         {
             CodificarCommand = new RelayCommand(Codificar);
-            DecodificarCommand = new RelayCommand(Decodificar);           
+            DecodificarCommand = new RelayCommand(Decodificar);
         }
 
         public bool ValidarPalabra()
@@ -79,8 +79,6 @@ namespace MaquinaDeTuring.ViewModels
                     CadenaNueva += letrasiguiente;
                     Actualizar("");
                     await Task.Delay(2000);
-                    
-                    
                 }
 
                 Estado = "Listo";
@@ -88,7 +86,10 @@ namespace MaquinaDeTuring.ViewModels
             }
             else
             {
-                Estado = "Error";
+                if (Cadena.Contains(' '))
+                    Estado = "ErrorEspaciosEnBlanco";
+                else
+                    Estado = "ErrorVariasPalabras";
                 Actualizar("");
             }
         }
@@ -100,7 +101,7 @@ namespace MaquinaDeTuring.ViewModels
             CadenaNueva = "";
             Actualizar("");
             if (ValidarPalabra())
-            {              
+            {
                 Estado = "Codificando";
 
                 for (int i = 0; i < Cadena.Length; i++)
@@ -120,7 +121,10 @@ namespace MaquinaDeTuring.ViewModels
             }
             else
             {
-                Estado = "Error";
+                if (Cadena.Contains(' '))
+                    Estado = "ErrorEspaciosEnBlanco";
+                else
+                    Estado = "ErrorVariasPalabras";
                 Actualizar("");
             }
         }
