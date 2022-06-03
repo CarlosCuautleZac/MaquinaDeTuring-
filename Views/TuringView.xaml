@@ -104,7 +104,7 @@
                        Margin="0,20">
                 <Button Command="{Binding DecodificarCommand}">Decodificar</Button>
                 <TextBox Text="{Binding Cadena}"></TextBox>
-                <Button>Codificar</Button>
+                <Button Command="{Binding CodificarCommand}">Codificar</Button>
             </WrapPanel>
             <Grid>
                 <TextBlock Style="{StaticResource PalabraProceso}"
