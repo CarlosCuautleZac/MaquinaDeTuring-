@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -6,11 +7,16 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MaquinaDeTuring.ViewModels
 {
     public class TuringViewModel : INotifyPropertyChanged
     {
+
+        //Comandos
+        public ICommand CodificarCommand { get; set; }
+        public ICommand DecodificarCommand { get; set; }
 
         //Esta es la cadena que el usuario va a introducir
         private string cadena;
@@ -39,7 +45,8 @@ namespace MaquinaDeTuring.ViewModels
 
         public TuringViewModel()
         {
-           
+            CodificarCommand = new RelayCommand(Codificar);
+            DecodificarCommand = new RelayCommand(Decodificar);           
         }
 
         public bool ValidarPalabra()
@@ -53,7 +60,7 @@ namespace MaquinaDeTuring.ViewModels
 
 
         //Metodo para codificar
-        public string Codificar()
+        public void Codificar()
         {
             if (ValidarPalabra())
             {
@@ -73,18 +80,16 @@ namespace MaquinaDeTuring.ViewModels
                 }
 
                 Estado = "Listo";
-                return CadenaNueva;
             }
             else
             {
                 Estado = "Error";
-                return CadenaNueva = "Error";
             }
         }
 
 
         //Metodo para decodificar
-        public string Decodificar()
+        public void Decodificar()
         {
             if (ValidarPalabra())
             {
@@ -104,12 +109,10 @@ namespace MaquinaDeTuring.ViewModels
                 }
 
                 Estado = "Listo";
-                return CadenaNueva;
             }
             else
             {
                 Estado = "Error";
-                return CadenaNueva = "Error";
             }
         }
 
