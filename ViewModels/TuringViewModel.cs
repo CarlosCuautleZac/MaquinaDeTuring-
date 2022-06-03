@@ -39,7 +39,7 @@ namespace MaquinaDeTuring.ViewModels
 
         public TuringViewModel()
         {
-            Decodificar();
+           
         }
 
         public bool ValidarPalabra()

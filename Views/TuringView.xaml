@@ -98,11 +98,12 @@
                        HorizontalAlignment="Center"
                        Margin="0,20">
                 <Button>Decodificar</Button>
-                <TextBox></TextBox>
+                <TextBox Text="{Binding Cadena}"></TextBox>
                 <Button>Codificar</Button>
             </WrapPanel>
             <Grid>
-                <TextBlock Style="{StaticResource PalabraProceso}">Palabra</TextBlock>
+                <TextBlock Style="{StaticResource PalabraProceso}"
+                           Text="{Binding CadenaNueva}"></TextBlock>
             </Grid>
         </DockPanel>
     </Grid>
