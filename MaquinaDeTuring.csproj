@@ -6,8 +6,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <!--<ItemGroup>
+    <None Remove="Assets\Montserrat-Black.ttf" />
+  </ItemGroup>-->
+
   <ItemGroup>
-    <Folder Include="Views\" />
+    <Resource Include="Assets\Montserrat-Black.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
