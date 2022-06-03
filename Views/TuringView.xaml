@@ -63,6 +63,11 @@
                 <Setter Property="Width" Value="400"></Setter>
                 <Setter Property="Margin" Value="20,0"></Setter>
                 <Setter Property="Height" Value="60"></Setter>
+                <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+                <Setter Property="FontWeight" Value="SemiBold"></Setter>
+                <Setter Property="Foreground" Value="#014a73"></Setter>
+                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+                <Setter Property="FontSize" Value="26"></Setter>
             </Style>
             <Style TargetType="TextBlock" x:Key="PalabraProceso">
                 <Setter Property="FontSize" Value="120"></Setter>
@@ -97,7 +102,7 @@
             <WrapPanel DockPanel.Dock="Bottom"
                        HorizontalAlignment="Center"
                        Margin="0,20">
-                <Button>Decodificar</Button>
+                <Button Command="{Binding DecodificarCommand}">Decodificar</Button>
                 <TextBox Text="{Binding Cadena}"></TextBox>
                 <Button>Codificar</Button>
             </WrapPanel>
