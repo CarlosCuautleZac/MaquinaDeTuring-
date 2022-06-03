@@ -73,7 +73,10 @@
         <DockPanel>
             
             <Grid DockPanel.Dock="Bottom" Background="red" Height="50">
-                
+                <Canvas Width="50"
+                        Height="50">
+                    <Ellipse></Ellipse>
+                </Canvas>
                 
                 
             </Grid>
