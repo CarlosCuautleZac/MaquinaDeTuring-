@@ -12,12 +12,12 @@ namespace MaquinaDeTuring.Helpers
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string Texto = "Transparent";
+            string Texto = "";
             if (value.ToString() == "Error")
             {
-                Texto = "Error: Recuerda que solo puedes introducir letras.";
+                Texto = "Error: Recuerda que solo puedes introducir una palabra a la vez y únicamente letras.";
                 return Texto;
-            }
+            }          
             else if (value.ToString() == "Codificando")
             {
                 Texto = "En proceso...";
